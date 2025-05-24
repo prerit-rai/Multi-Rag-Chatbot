@@ -6,7 +6,8 @@ from memory import MemoryManager
 from langchain.chat_models import ChatOpenAI
 
 class RAGSystem:
-    def __init__(self):
+    def __init__(self, model="openai"):
+        self.model = model
         self.embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         self.vector_store = self._initialize_vector_store()
         self.retriever = self.vector_store.as_retriever(search_kwargs={"k": 4})
@@ -28,15 +29,14 @@ class RAGSystem:
         from langchain.prompts import PromptTemplate
         return PromptTemplate(
             input_variables=["context", "question", "chat_history"],
-            template="""
-            Context from collections:
-            {context}
-            
-            Conversation History:
-            {chat_history}
-            
-            Question: {question}
-            Answer:"""
+        template="""[SYSTEM] You are a expert retrieval assistant. Use these facts:
+        {context}
+        
+        [CHAT HISTORY]
+        {chat_history}
+        
+        [USER] {question}
+        [ASSISTANT]"""
         )
 
     def _get_llm(self):
