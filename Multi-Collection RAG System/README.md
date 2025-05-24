@@ -4,7 +4,7 @@
 
 An intelligent chatbot system that retrieves information from multiple structured and semi-structured data collections while maintaining conversational context.
 
-## 📌 Features
+##  Features
 
 - **Multi-Source Retrieval**: Simultaneously query 5 different data collections
 - **Contextual Memory**: Maintains conversation history across sessions
@@ -13,13 +13,13 @@ An intelligent chatbot system that retrieves information from multiple structure
 - **Data Provenance**: Source attribution for answers
 
 **Supported Data Collections**:
-- 🏃 Wearable Data (Fitbit/Apple Health-like samples)
-- 💬 Chat History
-- 👤 User Profile
-- 📍 Location Data
-- 🎯 Custom Collection (Goals/Metrics)
+-  Wearable Data (Fitbit/Apple Health-like samples)
+-  Chat History
+-  User Profile
+-  Location Data
+-  Custom Collection (Goals/Metrics)
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Python 3.9+
