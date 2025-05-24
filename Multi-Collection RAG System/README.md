@@ -29,8 +29,8 @@ An intelligent chatbot system that retrieves information from multiple structure
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/multi-collection-rag-system.git
-cd multi-collection-rag-system
+git clone https://github.com/prerit-rai/Multi-Rag-Chatbot.git
+cd Multi-Rag-Chatbot
 
 # Install dependencies
 pip install -r requirements.txt
