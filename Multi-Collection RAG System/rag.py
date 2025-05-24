@@ -3,7 +3,8 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 from data_loader import DataLoader
 from memory import MemoryManager
-from langchain.chat_models import ChatOpenAI
+from langchain_google_genai import GoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 class RAGSystem:
     def __init__(self, model="openai"):
@@ -29,19 +30,24 @@ class RAGSystem:
         from langchain.prompts import PromptTemplate
         return PromptTemplate(
             input_variables=["context", "question", "chat_history"],
-        template="""[SYSTEM] You are a expert retrieval assistant. Use these facts:
+        template="""
+        Analyze using these data sources:
         {context}
-        
-        [CHAT HISTORY]
+
+        Conversation History:
         {chat_history}
-        
-        [USER] {question}
-        [ASSISTANT]"""
+
+        Follow these rules:
+        1. Prioritize wearable data for health queries
+        2. Use location data for time-based questions
+        3. Maintain professional tone
+
+        Question: {question}
+        Answer:"""
         )
 
     def _get_llm(self):
-       return ChatOpenAI(
-        model_name="gpt-4-0125-preview",
-        temperature=0.3,
-        max_tokens=400
-    )
+       self.llm = ChatGoogleGenerativeAI(
+            model="gemini-pro",
+            temperature=0.7,
+            google_api_key=os.getenv("GOOGLE_API_KEY")
